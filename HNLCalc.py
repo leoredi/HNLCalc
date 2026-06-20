@@ -937,7 +937,7 @@ class HNLCalc(Utility):
         tauB = self.tau(pid0)   #seconds
         SecToGev=1./(6.582122*pow(10.,-25.))
         tauB = tauB*SecToGev    #1/GeV
-        Ulx = self.vcoupling[str(abs(int(pid2)))]**2
+        Ulx = self.vcoupling[str(abs(int(pid2)))]
 
         #\Lambda_c^+ \to \Lambda^0
         #4122 to 3122
