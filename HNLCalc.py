@@ -393,7 +393,7 @@ class HNLCalc(Utility):
             M1=self.masses(pid1)
             prefactor=(tautau*GF**2*VH**2*fH**2*Mtau**3/(16*np.pi))
             prefactor*=(self.vcoupling[str(abs(int(pid0)))]**2)
-            br=f"{prefactor}*coupling**2*((1-(mass**2/{Mtau}**2))**2-({M1}**2/{Mtau}**2)*(1+(mass**2/{Mtau}**2)))*np.sqrt((1-(({M1}-mass)**2/{Mtau}**2)*(1-(({M1}+mass)**2/{Mtau}**2))))"
+            br=f"{prefactor}*coupling**2*((1-(mass**2/{Mtau}**2))**2-({M1}**2/{Mtau}**2)*(1+(mass**2/{Mtau}**2)))*np.sqrt((1-(({M1}-mass)**2/{Mtau}**2))*(1-(({M1}+mass)**2/{Mtau}**2)))"
         return (br)
 
     ###############################
