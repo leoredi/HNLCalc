@@ -12,7 +12,6 @@ import math
 import random
 import time
 import types
-# from skhep.math.vectors import LorentzVector, Vector3D
 from scipy import interpolate
 from matplotlib import gridspec
 from numba import jit
