@@ -22,6 +22,9 @@ from cycler import cycler
 
 
 
+GF = 1.1663788e-5  # Fermi constant (GeV^-2), PDG
+
+
 class Utility():
 
     ###############################
@@ -327,9 +330,6 @@ class HNLCalc(Utility):
         if pid in ["313","-313"]: return (-1/4+(1/3)*xw)
         elif pid in ["423","-423","443"]: return (1/4-(2/3)*xw)
     
-    def GF(self):
-        return 1.1663788*10**(-5)
-        
     def set_generators(self,generators_light, generators_heavy):
         self.generators = {
             211: generators_light,
@@ -359,7 +359,6 @@ class HNLCalc(Utility):
         vH, fH = self.VH(pid0), self.fH(pid0)
         SecToGev=1./(6.582122*pow(10.,-25.))
         tauH=tauH*SecToGev
-        GF=1.166378*10**(-5) #GeV^(-2)
         #calculate br
         prefactor=(tauH*GF**2*fH**2*vH**2)/(8*np.pi)
         prefactor*=self.vcoupling[str(abs(int(pid1)))]**2
@@ -376,7 +375,6 @@ class HNLCalc(Utility):
             Mtau, Mrho=self.masses(pid0), self.masses(pid1)
             SecToGev=1./(6.582122*pow(10.,-25.))
             tautau=tautau*SecToGev
-            GF=1.166378*10**(-5) #GeV^(-2)
             prefactor=(tautau*grho**2*GF**2*VH**2*Mtau**3/(8*np.pi*Mrho**2))
             prefactor*=(self.vcoupling[str(abs(int(pid0)))]**2)
             br=f"{prefactor}*coupling**2*((1-(mass**2/{Mtau}**2))**2+({Mrho}**2/{Mtau}**2)*(1+((mass**2-2*{Mrho}**2)/{Mtau}**2)))*np.sqrt((1-(({Mrho}-mass)**2/{Mtau}**2))*(1-(({Mrho}+mass)**2/{Mtau}**2)))"
@@ -385,7 +383,6 @@ class HNLCalc(Utility):
             SecToGev=1./(6.582122*pow(10.,-25.))
             tautau=self.tau(pid0)
             tautau=tautau*SecToGev
-            GF=1.166378*10**(-5) #GeV^(-2)
             VH=self.VH(pid1)
             fH=self.fH(pid1)
             Mtau=self.masses(pid0)
@@ -484,7 +481,6 @@ class HNLCalc(Utility):
         VHHp, tauH = self.VHHp(pid0,pid1), self.tau(pid0)
         SecToGev=1./(6.582122*pow(10.,-25.))
         tauH=tauH*SecToGev
-        GF=1.166378*10**(-5) #GeV^(-2)
 
         #accounts for quark content of decay; only relevant for neutral mesons with several quark configurations
         cp=1
@@ -656,7 +652,6 @@ class HNLCalc(Utility):
         tauH=self.tau(pid0)
         SecToGev=1./(6.58*pow(10.,-25.))
         tauH=tauH*SecToGev
-        GF=1.1663787*10**(-5)
         VHV=self.VHHp(pid0,pid1)
         m0=self.masses(pid0)
         m1=self.masses(pid1)
@@ -911,13 +906,11 @@ class HNLCalc(Utility):
         if pid2=='16' or pid2=='-16':
             SecToGev=1./(6.582122*pow(10.,-25.))
             tautau=self.tau(pid0)*SecToGev
-            GF=1.166378*10**(-5) #GeV^(-2)
             prefactor=f"({tautau}*{GF}**2*coupling**2*{m0}**2*energy/(2*np.pi**3))*{self.vcoupling[str(abs(int(pid1)))]}**2"
             dbr=f"{prefactor}*(1+((mass**2-{m1}**2)/{m0}**2)-2*(energy/{m0}))*(1-({m1}**2/({m0}**2+mass**2-2*energy*{m0})))*np.sqrt(energy**2-mass**2)"
         else:
             SecToGev=1./(6.582122*pow(10.,-25.))
             tautau=self.tau(pid0)*SecToGev
-            GF=1.166378*10**(-5) #GeV^(-2)
             prefactor=f"({tautau}*{GF}**2*coupling**2*{m0}**2/(4*np.pi**3))*{self.vcoupling[str(abs(int(pid0)))]}**2"
             dbr=f"{prefactor}*(1-{m1}**2/({m0}**2+mass**2-2*energy*{m0}))**2*np.sqrt(energy**2-mass**2)*(({m0}-energy)*(1-(mass**2+{m1}**2)/{m0}**2)-(1-{m1}**2/({m0}**2+mass**2-2*energy*{m0}))*(({m0}-energy)**2/{m0}+((energy**2-mass**2)/(3*{m0}))))"
         return(dbr)
@@ -927,7 +920,6 @@ class HNLCalc(Utility):
         pid1 = str(pid1)
         pid2 = str(pid2)
 
-        GF = 1.166378*10**(-5)
         m0 = self.masses(pid0)
         m1 = self.masses(pid1)
         m2 = self.masses(pid2)
@@ -1535,7 +1527,7 @@ class HNLCalc(Utility):
                   'mu':couplings[1], 'anti_mu': couplings[1],
                   'tau':couplings[2], 'anti_tau': couplings[2]} 
         
-        self.Gf = 1.166378*10**(-5)
+        self.Gf = GF
         
         self.sin2w = 0.23121 
         
