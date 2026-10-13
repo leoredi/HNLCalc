@@ -220,17 +220,17 @@ class HNLCalc(Utility):
         elif pid in ["313","-313","323","-323"]: return 0.204 
         elif pid in ["311","-311","321","-321"]: return 0.1564 
         elif pid in ["331","-331"]: return -0.0957
-        elif pid in ["421","-421","411","-411"]: return 0.2226 
+        elif pid in ["421","-421","411","-411"]: return 0.2120 # FLAG 2024, arXiv:2411.04268
         elif pid in ["443"]: return 0.409         
-        elif pid in ["431","-431"]: return 0.2801
+        elif pid in ["431","-431"]: return 0.2499 # FLAG 2024, arXiv:2411.04268
         elif pid in ["511", "511","521","-521"]: return 0.190
         elif pid in ["513","-513"]: return 1.027*0.190
         elif pid in ["531","-531"]: return 0.230  
         elif pid in ["523","-523"]: return 1.027*0.190
         elif pid in ["533","-533"]: return 1.028*0.230        
         elif pid in ["541","-541"]: return 0.480
-        elif pid in ["413","-413","423","-423"]: return 1.097*0.2226 
-        elif pid in ["433","-433"]: return 1.093*0.2801
+        elif pid in ["413","-413","423","-423"]: return 1.097*0.2120 
+        elif pid in ["433","-433"]: return 1.093*0.2499
 
     # Lifetimes
     def tau(self,pid):
